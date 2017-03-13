@@ -1,0 +1,5 @@
+hosts = <%= node['cmamail']['database']['host'] %>
+user = <%= node['cmamail']['database']['postfix']['user'] %>
+password = <%= node['cmamail']['database']['postfix']['password'] %>
+dbname = <%=  node['cmamail']['database']['postfix']['dbname']  %>
+query = SELECT goto FROM alias WHERE address='%s' AND active = 1

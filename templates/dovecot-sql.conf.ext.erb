@@ -1,0 +1,4 @@
+driver = mysql
+connect = host=127.0.0.1 dbname=<%= node['cmamail']['database']['dbname'] %> user=<%= node['cmamail']['database']['admin_username'] %>  password=<%= node['cmamail']['database']['admin_password'] %>
+default_pass_scheme = CRYPT
+password_query = SELECT email as user, password FROM users WHERE email='%u';

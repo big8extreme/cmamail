@@ -1,0 +1,34 @@
+---
+driver:
+  name: vagrant
+  customize:
+      memory: 2048
+      cpus: 2
+  network:
+    - ["private_network", {ip: "192.168.34.34"}] # Les adresses en 10.0 semblent poser des problemes a l'initialisation.
+
+  ssh:
+    insert_key: true  # Do not insert random key with Vagrant 1.7.1+.
+    private_key_path: '~/.vagrant.d/insecure_private_key' # Use insecure key
+    username: vagrant
+    password: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: false # Pas utile d'installer chef client, déjà présent dans l'image centos gaia
+
+platforms:
+ - name: gaiacentos7-2
+   transport:
+    username: vagrant
+    password: vagrant
+
+suites:
+  - name: cmamail
+    run_list:
+      - recipe[cmamail::default]
+    attributes:
+      awesome_customers_rhel:
+        database:
+          root_password: 'mysql_root_password'
+          admin_password: 'mysql_admin_password'
