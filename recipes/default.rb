@@ -3,7 +3,6 @@
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-include_recipe 'cmamail::repo'
 include_recipe 'selinux::permissive'
 include_recipe 'cmamail::hosts'
 include_recipe 'cmamail::packages'
